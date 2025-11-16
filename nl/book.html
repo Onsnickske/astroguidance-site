@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8">
+        <title>Astroguidancelife | Boek nu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="topbar">
+        <span class="topbar-text">Astroguidancelife</span>
+        <div class="lang-switch">
+            <a href="../en/book.html">🇬🇧 EN</a>
+            <a href="../es/book.html">🇪🇸 ES</a>
+            <a href="book.html" class="on">🇧🇪 NL</a>
+        </div>
+    </div>
+
+    <div class="nav-wrap">
+        <a class="logo" href="index.html">
+            <img src="../static/images/logo.png" alt="Astroguidancelife logo">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">Over mij</a>
+            <a href="reports.html">Astrologische rapporten</a>
+            <a href="book.html" class="active">Boek nu</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <section class="section">
+        <h1>Boek nu</h1>
+        <p class="lead">
+            Kies het rapport dat je wilt en ik bevestig per mail.
+        </p>
+    </section>
+
+    <section class="section book-form-wrap">
+        <form class="contact-form"
+              method="post"
+              action="mailto:michele.blindeman@gmail.com"
+              enctype="text/plain">
+            <div class="field">
+                <label for="name">Naam</label>
+                <input id="name" name="Naam" required>
+            </div>
+            <div class="field">
+                <label for="email">E-mail</label>
+                <input id="email" name="E-mail" type="email" required>
+            </div>
+            <div class="field">
+                <label for="topic">Welk rapport wil je?</label>
+                <select id="topic" name="Rapport">
+                    <option value="natal">Geboortehoroscoop – €80</option>
+                    <option value="love">Liefde &amp; compatibiliteit – €60</option>
+                    <option value="career">Carrière-rapport – €60</option>
+                    <option value="forecast">Voorspelling 12 maanden – €60</option>
+                    <option value="health">Gezondheid &amp; vitaliteit – €60</option>
+                    <option value="saturn">Saturnus-return – €60</option>
+                    <option value="jupiter">Jupiter-return – €60</option>
+                    <option value="pluto">Pluto vierkant Pluto – €60</option>
+                </select>
+            </div>
+            <button type="submit" class="primary-btn">
+                Aanvraag versturen
+            </button>
+        </form>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© Astro Guidance Life. Alle rechten voorbehouden.</p>
+    <p class="muted">
+        Consulten zijn persoonlijk en niet terug te betalen zodra de voorbereiding is begonnen.
+    </p>
+</footer>
+</body>
+</html>

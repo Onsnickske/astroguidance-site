@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Astroguidancelife | Reservar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="topbar">
+        <span class="topbar-text">Astroguidancelife</span>
+        <div class="lang-switch">
+            <a href="../en/book.html">🇬🇧 EN</a>
+            <a href="book.html" class="on">🇪🇸 ES</a>
+            <a href="../nl/book.html">🇧🇪 NL</a>
+        </div>
+    </div>
+
+    <div class="nav-wrap">
+        <a class="logo" href="index.html">
+            <img src="../static/images/logo.png" alt="Astroguidancelife logo">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">Inicio</a>
+            <a href="about.html">Sobre mí</a>
+            <a href="reports.html">Informes astrológicos</a>
+            <a href="book.html" class="active">Reservar</a>
+            <a href="contact.html">Contáctame</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <section class="section">
+        <h1>Reservar</h1>
+        <p class="lead">
+            Elige el informe que necesitas y mándame tu solicitud. Te confirmaré por email.
+        </p>
+    </section>
+
+    <section class="section book-form-wrap">
+        <form class="contact-form"
+              method="post"
+              action="mailto:michele.blindeman@gmail.com"
+              enctype="text/plain">
+            <div class="field">
+                <label for="name">Nombre</label>
+                <input id="name" name="Nombre" required>
+            </div>
+            <div class="field">
+                <label for="email">Correo electrónico</label>
+                <input id="email" name="Correo electrónico" type="email" required>
+            </div>
+            <div class="field">
+                <label for="topic">¿Qué informe deseas?</label>
+                <select id="topic" name="Informe">
+                    <option value="natal">Carta natal – 80 €</option>
+                    <option value="love">Amor y compatibilidad – 60 €</option>
+                    <option value="career">Informe profesional – 60 €</option>
+                    <option value="forecast">Pronóstico 12 meses – 60 €</option>
+                    <option value="health">Salud y vitalidad – 60 €</option>
+                    <option value="saturn">Retorno de Saturno – 60 €</option>
+                    <option value="jupiter">Retorno de Júpiter – 60 €</option>
+                    <option value="pluto">Plutón cuadratura Plutón – 60 €</option>
+                </select>
+            </div>
+            <button type="submit" class="primary-btn">
+                Enviar reserva
+            </button>
+        </form>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© Astro Guidance Life. Todos los derechos reservados.</p>
+    <p class="muted">
+        Las consultas son personales y no reembolsables una vez iniciada su preparación.
+    </p>
+</footer>
+</body>
+</html>
