@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ texts.site_title }} | {{ content.title }}{% endblock %}
+
+{% block content %}
+<section class="section">
+    <h1>{{ content.title }}</h1>
+    <p class="lead">{{ content.subtitle }}</p>
+
+    <div class="reports-intro-box">
+        <p>{{ content.intro }}</p>
+        <p>{{ content.intro_2 }}</p>
+    </div>
+
+    <div class="reports-grid">
+        {% for rpt in content.reports_list %}
+            {# pick image based on code #}
+            {% set img_file = 'images/reports-default.jpg' %}
+            {% if rpt.code == 'natal' %}
+                {% set img_file = 'images/reports-natal.jpg' %}
+            {% elif rpt.code == 'love' %}
+                {% set img_file = 'images/reports-love.jpg' %}
+            {% elif rpt.code == 'career' %}
+                {% set img_file = 'images/reports-career.jpg' %}
+            {% elif rpt.code == 'forecast' %}
+                {% set img_file = 'images/reports-forecast.jpg' %}
+            {% elif rpt.code == 'health' %}
+                {% set img_file = 'images/reports-health.jpg' %}
+            {% elif rpt.code == 'saturn' %}
+                {% set img_file = 'images/reports-saturn.jpg' %}
+            {% elif rpt.code == 'jupiter' %}
+                {% set img_file = 'images/reports-jupiter.jpg' %}
+            {% elif rpt.code == 'pluto' %}
+                {% set img_file = 'images/reports-pluto.jpg' %}
+            {% endif %}
+
+            <article class="report-item">
+                <div class="report-thumb">
+                    <img src="{{ url_for('static', filename=img_file) }}" alt="{{ rpt.title }}">
+                </div>
+                <div class="report-body">
+                    <h2>{{ rpt.title }}</h2>
+                    <p>{{ rpt.desc }}</p>
+                </div>
+                <div class="report-footer">
+                    <span class="price-pill">{{ rpt.price }}</span>
+                    <a href="{{ url_for('book', lang=lang) }}" class="ghost-btn">
+                        {{ texts.book_prefix }} →
+                    </a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+
+    <div class="reports-bottom-cta">
+        <p>{{ content.bottom_cta }}</p>
+        <a href="{{ url_for('contact', lang=lang) }}" class="primary-btn">
+            {{ texts.menu_contact }}
+        </a>
+        <a href="{{ url_for('book', lang=lang) }}" class="secondary-btn">
+            {{ texts.menu_book }}
+        </a>
+    </div>
+</section>
+{% endblock %}

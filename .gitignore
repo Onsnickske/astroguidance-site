@@ -4,7 +4,15 @@
 # PyCharm settings
 .idea/
 
-# Future-proof for build tools
+# Python junk
+__pycache__/
+*.py[cod]
+
+# Virtual environments (if you ever add one)
+venv/
+.env
+
+# Build tools (future-proof)
 node_modules/
 dist/
 build/

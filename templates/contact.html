@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}{{ texts.site_title }} | {{ content.title }}{% endblock %}
+
+{% block content %}
+<section class="section contact-hero">
+    <div class="contact-photo">
+        <img src="{{ url_for('static', filename='images/contact_portrait_ai.jpg') }}" alt="Michele">
+    </div>
+    <div class="contact-panel">
+        <h1>{{ content.hero_heading | replace('\n', '<br>') | safe }}</h1>
+        <p>{{ content.hero_text | replace('\n', '<br>') | safe }}</p>
+    </div>
+</section>
+
+<section class="section contact-form-wrap">
+    <h2>{{ content.get_in_touch_title }}</h2>
+    <p class="muted">{{ content.get_in_touch_text }}</p>
+
+    {% if sent %}
+        <div class="success-box">{{ content.thanks }}</div>
+    {% endif %}
+
+    <form method="post" class="contact-form">
+        <div class="two-cols">
+            <div class="field">
+                <label for="name">{{ content.form_name }}</label>
+                <input id="name" name="name" required>
+            </div>
+            <div class="field">
+                <label for="lastname">{{ content.form_lastname }}</label>
+                <input id="lastname" name="lastname">
+            </div>
+        </div>
+        <div class="field">
+            <label for="email">{{ content.form_email }}</label>
+            <input id="email" name="email" type="email" required>
+        </div>
+        <div class="field">
+            <label for="message">{{ content.form_message }}</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+        </div>
+        <button type="submit" class="primary-btn">{{ content.form_button }}</button>
+    </form>
+</section>
+
+<section class="section disclaimer">
+    <h3>{{ content.disclaimer_title }}</h3>
+    {% for para in content.disclaimer_paragraphs %}
+        <p>{{ para }}</p>
+    {% endfor %}
+</section>
+{% endblock %}

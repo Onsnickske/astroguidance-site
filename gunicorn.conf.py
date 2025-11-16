@@ -1,0 +1,9 @@
+bind = "127.0.0.1:8000"
+workers = 3
+accesslog = "-"
+errorlog = "-"
+limit_request_line = 4094
+limit_request_field_size = 8190
+max_requests = 500
+max_requests_jitter = 30
+timeout = 30
