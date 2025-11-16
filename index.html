@@ -1,11 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>Astroguidance Life</title>
+    <meta charset="utf-8">
+    <title>Astroguidancelife</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
-    <h1>Astroguidance Life</h1>
-    <p>This is the first version of the site, managed with Git.</p>
+<header class="site-header">
+    <div class="topbar">
+        <span class="topbar-text">Astroguidancelife</span>
+        <div class="lang-switch">
+            <!-- For now these are simple static links; later we can add real ES / NL pages -->
+            <a href="index.html" class="on">🇬🇧 EN</a>
+            <a href="index-es.html">🇪🇸 ES</a>
+            <a href="index-nl.html">🇧🇪 NL</a>
+        </div>
+    </div>
+
+    <div class="nav-wrap">
+        <a class="logo" href="index.html">
+            <img src="static/images/logo.png" alt="Astroguidancelife logo">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html" class="active">Home</a>
+            <a href="about.html">About me</a>
+            <a href="reports.html">Astrology Reports</a>
+            <a href="book.html">Book Now</a>
+            <a href="contact.html">Contact Me</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>It's written in the stars</h1>
+            <p>
+                Begin your journey of healing, self-discovery and personal transformation
+                through the art of astrology.
+            </p>
+            <a href="reports.html" class="primary-btn">
+                Astrology Reports
+            </a>
+        </div>
+        <div class="hero-image">
+            <img src="static/images/home_book.jpg" alt="Astro guidance notebook and chart">
+        </div>
+    </section>
+
+    <!-- FEATURED REPORTS -->
+    <section class="section">
+        <h2 class="intro">Most requested reports</h2>
+        <p class="lead">Start with one of these readings.</p>
+
+        <div class="cards-3">
+            <!-- Natal report -->
+            <article class="astro-card">
+                <img src="static/images/reports-natal.jpg" alt="Natal chart analysis">
+                <div class="astro-card-body">
+                    <h3>Natal chart analysis</h3>
+                    <p>
+                        Find out how the position of the planets at your birth influence
+                        your entire life and personality.
+                    </p>
+                    <a href="reports.html" class="text-link">
+                        Astrology Reports →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Love report -->
+            <article class="astro-card">
+                <img src="static/images/reports-love.jpg" alt="Love & compatibility report">
+                <div class="astro-card-body">
+                    <h3>Love &amp; Compatibility</h3>
+                    <p>
+                        Find out if you and your love interest are soul mates, best friends,
+                        or a recipe for disaster.
+                    </p>
+                    <a href="reports.html" class="text-link">
+                        Astrology Reports →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Career report -->
+            <article class="astro-card">
+                <img src="static/images/reports-career.jpg" alt="Career report">
+                <div class="astro-card-body">
+                    <h3>Career Report</h3>
+                    <p>
+                        If you wonder if you are in the right job, making enough money and
+                        maintaining a good work/life balance, this report is for you!
+                    </p>
+                    <a href="reports.html" class="text-link">
+                        Astrology Reports →
+                    </a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- WELCOME / INTRO BLOCK -->
+    <section class="section">
+        <h2 class="intro">Welcome to Astroguidancelife</h2>
+        <p class="lead">
+            Are you looking to improve your love life, your career, or your health, but don't know where to start?
+            Wherever you are in life, I can help guide you to begin your journey.
+        </p>
+        <p>
+            Astrology is the study of the position and movements of the planets to interpret a person's characteristics
+            and forecast life events. In the 30 years I have been studying and practicing astrology, I have been able
+            to help myself, my family and my friends to better understand how we can improve our lives.
+        </p>
+        <p>
+            Let me help you to find out how you can get the most out of this life.
+        </p>
+        <p>
+            <a href="about.html" class="text-link">Find out more about me »</a>
+        </p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© Astro Guidance Life. All rights reserved.</p>
+    <p class="muted">
+        Bookings are personal and non-refundable once preparation has started.
+    </p>
+</footer>
 </body>
 </html>
