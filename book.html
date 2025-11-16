@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Astroguidancelife | Book Now</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google fonts -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap">
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="topbar">
+        <span class="topbar-text">Astroguidancelife</span>
+        <div class="lang-switch">
+            <a href="book.html" class="on">🇬🇧 EN</a>
+            <a href="book-es.html">🇪🇸 ES</a>
+            <a href="book-nl.html">🇧🇪 NL</a>
+        </div>
+    </div>
+
+    <div class="nav-wrap">
+        <a class="logo" href="index.html">
+            <img src="static/images/logo.png" alt="Astroguidancelife logo">
+        </a>
+        <nav class="main-nav">
+            <a href="index.html">Home</a>
+            <a href="about.html">About me</a>
+            <a href="reports.html">Astrology Reports</a>
+            <a href="book.html" class="active">Book Now</a>
+            <a href="contact.html">Contact Me</a>
+        </nav>
+    </div>
+</header>
+
+<main class="page">
+    <section class="section">
+        <h1>Book now</h1>
+        <p class="lead">
+            Choose the report that speaks to you and send your request. I will confirm by email.
+        </p>
+
+        <!-- Simple booking form – static: sends via email client -->
+        <form class="astro-form"
+              action="mailto:michele.blindeman@gmail.com"
+              method="post"
+              enctype="text/plain">
+            <div class="form-row">
+                <label for="name">Name</label>
+                <input id="name" name="Name" type="text" required>
+            </div>
+
+            <div class="form-row">
+                <label for="email">Email</label>
+                <input id="email" name="Email" type="email" required>
+            </div>
+
+            <div class="form-row">
+                <label for="topic">Which report would you like?</label>
+                <select id="topic" name="Report">
+                    <option value="natal">Natal chart analysis – €80</option>
+                    <option value="love">Love &amp; compatibility – €60</option>
+                    <option value="career">Career report – €60</option>
+                    <option value="forecast">12 month forecast – €60</option>
+                    <option value="health">Health &amp; vitality – €60</option>
+                    <option value="saturn">Saturn return – €60</option>
+                    <option value="jupiter">Jupiter return – €60</option>
+                    <option value="pluto">Pluto square Pluto – €60</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="message">Anything you would like me to focus on?</label>
+                <textarea id="message" name="Message" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Send booking request
+            </button>
+        </form>
+
+        <p class="muted" style="margin-top:1.5rem;">
+            By sending your request you understand that bookings are personal and non-refundable once preparation has started.
+        </p>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <p>© Astro Guidance Life. All rights reserved.</p>
+    <p class="muted">
+        Bookings are personal and non-refundable once preparation has started.
+    </p>
+</footer>
+</body>
+</html>
