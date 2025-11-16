@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- English -->
+  <url><loc>https://astroguidance.uk/en/index.html</loc></url>
+  <url><loc>https://astroguidance.uk/en/about.html</loc></url>
+  <url><loc>https://astroguidance.uk/en/reports.html</loc></url>
+  <url><loc>https://astroguidance.uk/en/book.html</loc></url>
+  <url><loc>https://astroguidance.uk/en/contact.html</loc></url>
+
+  <!-- Spanish -->
+  <url><loc>https://astroguidance.uk/es/index.html</loc></url>
+  <url><loc>https://astroguidance.uk/es/about.html</loc></url>
+  <url><loc>https://astroguidance.uk/es/reports.html</loc></url>
+  <url><loc>https://astroguidance.uk/es/book.html</loc></url>
+  <url><loc>https://astroguidance.uk/es/contact.html</loc></url>
+
+  <!-- Dutch -->
+  <url><loc>https://astroguidance.uk/nl/index.html</loc></url>
+  <url><loc>https://astroguidance.uk/nl/about.html</loc></url>
+  <url><loc>https://astroguidance.uk/nl/reports.html</loc></url>
+  <url><loc>https://astroguidance.uk/nl/book.html</loc></url>
+  <url><loc>https://astroguidance.uk/nl/contact.html</loc></url>
+
+</urlset>
