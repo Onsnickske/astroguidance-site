@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Astroguidancelife | Book Now</title>
+    <title>Astroguidancelife | Book now</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google fonts -->
@@ -38,28 +38,32 @@
 </header>
 
 <main class="page">
+    <!-- This mirrors your original Jinja structure: .section + .book-form-wrap + .contact-form + .field -->
     <section class="section">
         <h1>Book now</h1>
         <p class="lead">
             Choose the report that speaks to you and send your request. I will confirm by email.
         </p>
+    </section>
 
-        <!-- Simple booking form – static: sends via email client -->
-        <form class="astro-form"
-              action="mailto:michele.blindeman@gmail.com"
+    <section class="section book-form-wrap">
+        <!-- In Flask this showed conditionally when "booked" is true.
+             For static version we leave it out, or you can uncomment it if you want a permanent message. -->
+        <!-- <div class="success-box">Thank you — your booking request has been received.</div> -->
+
+        <form class="contact-form"
               method="post"
+              action="mailto:michele.blindeman@gmail.com"
               enctype="text/plain">
-            <div class="form-row">
+            <div class="field">
                 <label for="name">Name</label>
-                <input id="name" name="Name" type="text" required>
+                <input id="name" name="Name" required>
             </div>
-
-            <div class="form-row">
+            <div class="field">
                 <label for="email">Email</label>
                 <input id="email" name="Email" type="email" required>
             </div>
-
-            <div class="form-row">
+            <div class="field">
                 <label for="topic">Which report would you like?</label>
                 <select id="topic" name="Report">
                     <option value="natal">Natal chart analysis – €80</option>
@@ -72,20 +76,10 @@
                     <option value="pluto">Pluto square Pluto – €60</option>
                 </select>
             </div>
-
-            <div class="form-row">
-                <label for="message">Anything you would like me to focus on?</label>
-                <textarea id="message" name="Message" rows="4"></textarea>
-            </div>
-
             <button type="submit" class="primary-btn">
                 Send booking request
             </button>
         </form>
-
-        <p class="muted" style="margin-top:1.5rem;">
-            By sending your request you understand that bookings are personal and non-refundable once preparation has started.
-        </p>
     </section>
 </main>
 
