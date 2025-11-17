@@ -43,21 +43,20 @@
     </section>
 
     <section class="section book-form-wrap">
-        <div id="form-status" class="success-box" style="display:none;"></div>
+        <div id="book-status-es" class="success-box" style="display:none"></div>
 
-        <form class="contact-form" method="post" action="/api/contact">
-            <input type="hidden" name="form_type" value="booking-es">
+        <form id="book-form-es" class="contact-form">
             <div class="field">
-                <label for="name">Nombre</label>
-                <input id="name" name="name" required>
+                <label for="book-name-es">Nombre</label>
+                <input id="book-name-es" name="name" required>
             </div>
             <div class="field">
-                <label for="email">Correo electrónico</label>
-                <input id="email" name="email" type="email" required>
+                <label for="book-email-es">Correo electrónico</label>
+                <input id="book-email-es" name="email" type="email" required>
             </div>
             <div class="field">
-                <label for="topic">¿Qué informe deseas?</label>
-                <select id="topic" name="topic">
+                <label for="book-topic-es">¿Qué informe deseas?</label>
+                <select id="book-topic-es" name="topic">
                     <option value="natal">Carta natal – 80 €</option>
                     <option value="love">Amor y compatibilidad – 60 €</option>
                     <option value="career">Informe profesional – 60 €</option>
@@ -68,13 +67,7 @@
                     <option value="pluto">Plutón cuadratura Plutón – 60 €</option>
                 </select>
             </div>
-            <div class="field">
-                <label for="message">¿Quieres añadir algo más?</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-            </div>
-            <button type="submit" class="primary-btn">
-                Enviar reserva
-            </button>
+            <button type="submit" class="primary-btn">Enviar reserva</button>
         </form>
     </section>
 </main>
@@ -87,35 +80,48 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form[action='/api/contact']");
-  const status = document.getElementById("form-status");
-  if (!form) return;
+(function () {
+    const form = document.getElementById('book-form-es');
+    const statusBox = document.getElementById('book-status-es');
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (status) {
-      status.style.display = "block";
-      status.textContent = "Enviando...";
-    }
+    if (!form) return;
 
-    try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-      });
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-      if (res.ok) {
-        if (status) status.textContent = "Gracias, he recibido tu solicitud.";
-        form.reset();
-      } else {
-        if (status) status.textContent = "Ha ocurrido un error. Inténtalo de nuevo.";
-      }
-    } catch (err) {
-      if (status) status.textContent = "Error de red. Inténtalo de nuevo.";
-    }
-  });
-});
+        statusBox.style.display = 'block';
+        statusBox.className = 'success-box';
+        statusBox.textContent = 'Enviando…';
+
+        const payload = {
+            Form: 'Reserva (ES)',
+            Nombre: form.name.value,
+            Email: form.email.value,
+            Informe: form.topic.value
+        };
+
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/michele.blindeman@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) throw new Error('Network error');
+
+            statusBox.className = 'success-box';
+            statusBox.textContent = 'Gracias — he recibido tu solicitud.';
+            form.reset();
+        } catch (err) {
+            console.error(err);
+            statusBox.className = 'error-box';
+            statusBox.textContent = 'Ha ocurrido un error. Inténtalo de nuevo.';
+        }
+    });
+})();
 </script>
 </body>
 </html>

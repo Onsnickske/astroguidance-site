@@ -43,21 +43,20 @@
     </section>
 
     <section class="section book-form-wrap">
-        <div id="form-status" class="success-box" style="display:none;"></div>
+        <div id="book-status-nl" class="success-box" style="display:none"></div>
 
-        <form class="contact-form" method="post" action="/api/contact">
-            <input type="hidden" name="form_type" value="booking-nl">
+        <form id="book-form-nl" class="contact-form">
             <div class="field">
-                <label for="name">Naam</label>
-                <input id="name" name="name" required>
+                <label for="book-name-nl">Naam</label>
+                <input id="book-name-nl" name="name" required>
             </div>
             <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" required>
+                <label for="book-email-nl">E-mail</label>
+                <input id="book-email-nl" name="email" type="email" required>
             </div>
             <div class="field">
-                <label for="topic">Welk rapport wil je?</label>
-                <select id="topic" name="topic">
+                <label for="book-topic-nl">Welk rapport wil je?</label>
+                <select id="book-topic-nl" name="topic">
                     <option value="natal">Geboortehoroscoop – €80</option>
                     <option value="love">Liefde &amp; compatibiliteit – €60</option>
                     <option value="career">Carrière-rapport – €60</option>
@@ -68,13 +67,7 @@
                     <option value="pluto">Pluto vierkant Pluto – €60</option>
                 </select>
             </div>
-            <div class="field">
-                <label for="message">Wil je nog iets toevoegen?</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-            </div>
-            <button type="submit" class="primary-btn">
-                Aanvraag versturen
-            </button>
+            <button type="submit" class="primary-btn">Aanvraag versturen</button>
         </form>
     </section>
 </main>
@@ -87,35 +80,48 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form[action='/api/contact']");
-  const status = document.getElementById("form-status");
-  if (!form) return;
+(function () {
+    const form = document.getElementById('book-form-nl');
+    const statusBox = document.getElementById('book-status-nl');
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (status) {
-      status.style.display = "block";
-      status.textContent = "Versturen...";
-    }
+    if (!form) return;
 
-    try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-      });
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-      if (res.ok) {
-        if (status) status.textContent = "Bedankt, je aanvraag is verzonden.";
-        form.reset();
-      } else {
-        if (status) status.textContent = "Er ging iets mis. Probeer opnieuw.";
-      }
-    } catch (err) {
-      if (status) status.textContent = "Netwerkfout. Probeer opnieuw.";
-    }
-  });
-});
+        statusBox.style.display = 'block';
+        statusBox.className = 'success-box';
+        statusBox.textContent = 'Bezig met verzenden…';
+
+        const payload = {
+            Form: 'Boeking (NL)',
+            Naam: form.name.value,
+            Email: form.email.value,
+            Rapport: form.topic.value
+        };
+
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/michele.blindeman@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) throw new Error('Network error');
+
+            statusBox.className = 'success-box';
+            statusBox.textContent = 'Dank je — je aanvraag is ontvangen.';
+            form.reset();
+        } catch (err) {
+            console.error(err);
+            statusBox.className = 'error-box';
+            statusBox.textContent = 'Er ging iets mis. Probeer het opnieuw.';
+        }
+    });
+})();
 </script>
 </body>
 </html>

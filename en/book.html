@@ -43,21 +43,20 @@
     </section>
 
     <section class="section book-form-wrap">
-        <div id="form-status" class="success-box" style="display:none;"></div>
+        <div id="book-status-en" class="success-box" style="display:none"></div>
 
-        <form class="contact-form" method="post" action="/api/contact">
-            <input type="hidden" name="form_type" value="booking-en">
+        <form id="book-form-en" class="contact-form">
             <div class="field">
-                <label for="name">Name</label>
-                <input id="name" name="name" required>
+                <label for="book-name-en">Name</label>
+                <input id="book-name-en" name="name" required>
             </div>
             <div class="field">
-                <label for="email">Email</label>
-                <input id="email" name="email" type="email" required>
+                <label for="book-email-en">Email</label>
+                <input id="book-email-en" name="email" type="email" required>
             </div>
             <div class="field">
-                <label for="topic">Which report would you like?</label>
-                <select id="topic" name="topic">
+                <label for="book-topic-en">Which report would you like?</label>
+                <select id="book-topic-en" name="topic">
                     <option value="natal">Natal chart analysis – €80</option>
                     <option value="love">Love &amp; compatibility – €60</option>
                     <option value="career">Career report – €60</option>
@@ -68,13 +67,7 @@
                     <option value="pluto">Pluto square Pluto – €60</option>
                 </select>
             </div>
-            <div class="field">
-                <label for="message">Anything else you’d like to add?</label>
-                <textarea id="message" name="message" rows="4"></textarea>
-            </div>
-            <button type="submit" class="primary-btn">
-                Send booking request
-            </button>
+            <button type="submit" class="primary-btn">Send booking request</button>
         </form>
     </section>
 </main>
@@ -87,35 +80,48 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form[action='/api/contact']");
-  const status = document.getElementById("form-status");
-  if (!form) return;
+(function () {
+    const form = document.getElementById('book-form-en');
+    const statusBox = document.getElementById('book-status-en');
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (status) {
-      status.style.display = "block";
-      status.textContent = "Sending...";
-    }
+    if (!form) return;
 
-    try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-      });
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-      if (res.ok) {
-        if (status) status.textContent = "Thank you, your booking request has been sent.";
-        form.reset();
-      } else {
-        if (status) status.textContent = "There was an error. Please try again.";
-      }
-    } catch (err) {
-      if (status) status.textContent = "Network error. Please try again.";
-    }
-  });
-});
+        statusBox.style.display = 'block';
+        statusBox.className = 'success-box';
+        statusBox.textContent = 'Sending…';
+
+        const payload = {
+            Form: 'Booking (EN)',
+            Name: form.name.value,
+            Email: form.email.value,
+            Report: form.topic.value
+        };
+
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/michele.blindeman@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) throw new Error('Network error');
+
+            statusBox.className = 'success-box';
+            statusBox.textContent = 'Thank you — your booking request has been received.';
+            form.reset();
+        } catch (err) {
+            console.error(err);
+            statusBox.className = 'error-box';
+            statusBox.textContent = 'There was an error. Please try again.';
+        }
+    });
+})();
 </script>
 </body>
 </html>

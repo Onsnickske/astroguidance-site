@@ -44,10 +44,9 @@
             <p>
                 Je hebt een heel goede keuze gemaakt door een reading te boeken.<br><br>
                 Elke reading is persoonlijk. Ik bestudeer je geboortehoroscoop in detail en dat duurt meestal zo’n 8 uur.<br><br>
-                Het is belangrijk om te beginnen met de geboortehoroscoop. De ‘natal promise’ is de basis
-                voor alle verdere analyses in liefde, werk, gezondheid, enz.<br><br>
+                Het is belangrijk om te beginnen met de geboortehoroscoop. De ‘natal promise’ is de basis voor alle verdere analyses.<br><br>
                 Ik heb je DATUM, PLAATS en (EXACTE) TIJD van geboorte nodig. Hoe preciezer, hoe beter het resultaat.<br><br>
-                Geef me 3 opties van dag en tijd die voor jou passen voor de video-sessie.<br><br>
+                Geef me 3 opties van dag en tijd voor de video-sessie.<br><br>
                 Stuur me je gegevens en ik neem contact met je op.
             </p>
         </div>
@@ -59,27 +58,26 @@
             WhatsApp: +34 616 026 333 · Email: michele.blindeman@gmail.com
         </p>
 
-        <div id="form-status" class="success-box" style="display:none;"></div>
+        <div id="contact-status-nl" class="success-box" style="display:none"></div>
 
-        <form class="contact-form" method="post" action="/api/contact">
-            <input type="hidden" name="form_type" value="contact-nl">
+        <form id="contact-form-nl" class="contact-form">
             <div class="two-cols">
                 <div class="field">
-                    <label for="name">Voornaam</label>
-                    <input id="name" name="name" required>
+                    <label for="name-nl">Voornaam</label>
+                    <input id="name-nl" name="name" required>
                 </div>
                 <div class="field">
-                    <label for="lastname">Achternaam</label>
-                    <input id="lastname" name="lastname">
+                    <label for="lastname-nl">Achternaam</label>
+                    <input id="lastname-nl" name="lastname">
                 </div>
             </div>
             <div class="field">
-                <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" required>
+                <label for="email-nl">E-mail</label>
+                <input id="email-nl" name="email" type="email" required>
             </div>
             <div class="field">
-                <label for="message">Bericht</label>
-                <textarea id="message" name="message" rows="5"></textarea>
+                <label for="message-nl">Bericht</label>
+                <textarea id="message-nl" name="message" rows="5"></textarea>
             </div>
             <button type="submit" class="primary-btn">
                 Versturen
@@ -88,10 +86,10 @@
     </section>
 
     <section class="section disclaimer">
-        <h3>Voorwaarden – Consult disclaimer</h3>
+        <h3>Voorwaarden – consult disclaimer</h3>
         <p>Mijn consulten vervangen geen medisch, juridisch of financieel advies.</p>
         <p>Alles wat je deelt blijft privé.</p>
-        <p>Consulten zijn bedoeld als inzicht en begeleiding, geen waarzeggerij.</p>
+        <p>Consulten zijn bedoeld als inzicht en begeleiding.</p>
         <p>Vrije wil speelt altijd een rol.</p>
         <p>Betaling gebeurt vooraf en is niet terugbetaalbaar.</p>
     </section>
@@ -105,35 +103,49 @@
 </footer>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("form[action='/api/contact']");
-  const status = document.getElementById("form-status");
-  if (!form) return;
+(function () {
+    const form = document.getElementById('contact-form-nl');
+    const statusBox = document.getElementById('contact-status-nl');
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (status) {
-      status.style.display = "block";
-      status.textContent = "Versturen...";
-    }
+    if (!form) return;
 
-    try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-      });
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-      if (res.ok) {
-        if (status) status.textContent = "Bedankt, je bericht is verzonden.";
-        form.reset();
-      } else {
-        if (status) status.textContent = "Er ging iets mis. Probeer opnieuw.";
-      }
-    } catch (err) {
-      if (status) status.textContent = "Netwerkfout. Probeer opnieuw.";
-    }
-  });
-});
+        statusBox.style.display = 'block';
+        statusBox.className = 'success-box';
+        statusBox.textContent = 'Bezig met verzenden…';
+
+        const payload = {
+            Form: 'Contact (NL)',
+            Voornaam: form.name.value,
+            Achternaam: form.lastname.value,
+            Email: form.email.value,
+            Bericht: form.message.value
+        };
+
+        try {
+            const res = await fetch('https://formsubmit.co/ajax/michele.blindeman@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            if (!res.ok) throw new Error('Network error');
+
+            statusBox.className = 'success-box';
+            statusBox.textContent = 'Bedankt, ik laat snel iets weten.';
+            form.reset();
+        } catch (err) {
+            console.error(err);
+            statusBox.className = 'error-box';
+            statusBox.textContent = 'Er ging iets mis. Probeer het opnieuw.';
+        }
+    });
+})();
 </script>
 </body>
 </html>
