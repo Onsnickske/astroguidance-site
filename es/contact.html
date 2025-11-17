@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Astroguidancelife | Contáctame</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="../static/css/style.css">
@@ -58,27 +59,27 @@
             WhatsApp: +34 616 026 333 · Email: michele.blindeman@gmail.com
         </p>
 
-        <form class="contact-form"
-              method="post"
-              action="mailto:michele.blindeman@gmail.com"
-              enctype="text/plain">
+        <div id="form-status" class="success-box" style="display:none;"></div>
+
+        <form class="contact-form" method="post" action="/api/contact">
+            <input type="hidden" name="form_type" value="contact-es">
             <div class="two-cols">
                 <div class="field">
                     <label for="name">Nombre</label>
-                    <input id="name" name="Nombre" required>
+                    <input id="name" name="name" required>
                 </div>
                 <div class="field">
                     <label for="lastname">Apellidos</label>
-                    <input id="lastname" name="Apellidos">
+                    <input id="lastname" name="lastname">
                 </div>
             </div>
             <div class="field">
                 <label for="email">Correo electrónico</label>
-                <input id="email" name="Correo electrónico" type="email" required>
+                <input id="email" name="email" type="email" required>
             </div>
             <div class="field">
                 <label for="message">Tu mensaje</label>
-                <textarea id="message" name="Mensaje" rows="5"></textarea>
+                <textarea id="message" name="message" rows="5"></textarea>
             </div>
             <button type="submit" class="primary-btn">
                 Enviar
@@ -103,7 +104,8 @@
             Solo puedo guiarte hacia posibilidades futuras. Tu libre albedrío siempre cuenta.
         </p>
         <p>
-            Aceptas que no puedo ser responsable de las decisiones que tomes ni de daños directos o indirectos derivados del uso de mis servicios.
+            Aceptas que no puedo ser responsable de las decisiones que tomes ni de daños directos o indirectos
+            derivados del uso de mis servicios.
         </p>
         <p>
             El pago debe hacerse por adelantado y no es reembolsable.
@@ -123,5 +125,37 @@
         Las consultas son personales y no reembolsables una vez iniciada su preparación.
     </p>
 </footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector("form[action='/api/contact']");
+  const status = document.getElementById("form-status");
+  if (!form) return;
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (status) {
+      status.style.display = "block";
+      status.textContent = "Enviando...";
+    }
+
+    try {
+      const res = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+      });
+
+      if (res.ok) {
+        if (status) status.textContent = "Gracias, he recibido tu mensaje.";
+        form.reset();
+      } else {
+        if (status) status.textContent = "Ha ocurrido un error. Inténtalo de nuevo.";
+      }
+    } catch (err) {
+      if (status) status.textContent = "Error de red. Inténtalo de nuevo.";
+    }
+  });
+});
+</script>
 </body>
 </html>
